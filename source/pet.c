@@ -3,7 +3,7 @@
 #include "string.h"
 #include "stdlib.h"
 
-int CreatePet(Pet *newPet, const char **params) {
+int CreatePet(Pet *newPet, char *params[3]) {
     if (!params) {
         perror("pointer error");
     }

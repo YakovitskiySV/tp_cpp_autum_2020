@@ -13,7 +13,7 @@ int main() {
         perror("allocation error");
         return 0;
     }
-    char **params[3];
+    char *params[3];
 
     for (size_t i = 0 ; i < 3 ; i++) {
         params[i] = (char*) malloc(64 * sizeof(char));

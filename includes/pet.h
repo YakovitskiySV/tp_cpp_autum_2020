@@ -10,7 +10,7 @@ typedef struct Pet {
 } Pet;
 
 // Init/release operations
-int CreatePet(Pet *newPet, const char **params);
+int CreatePet(Pet *newPet, char *params[3]);
 int DeletePet(Pet *pet);
 
 // Extra operations

@@ -2,11 +2,31 @@ cmake_minimum_required(VERSION 3.17)
 project(IZ-1)
 
 set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
-include_directories("${PROJECT_SOURCE_DIR}/includes")
-include_directories("${PROJECT_SOURCE_DIR}/source")
+find_package(GTest REQUIRED)
+find_package(Threads REQUIRED)
 
-file(GLOB
-        SOURCES "source/*.c")
+set(INCLUDES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/includes)
+set(SOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/source)
+set(TESTS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+include_directories("${GTEST_INCLUDE_DIRS}")
+include_directories(${INCLUDES_DIR})
+
+
+add_executable(iz1.out
+        ${SOURCES_DIR}/main.c
+        ${SOURCES_DIR}/pet.c
+        ${INCLUDES_DIR}/pet.h)
+
+add_executable(tests.out
+        ${TESTS_DIR}/tests.cpp
+        ${SOURCES_DIR}/pet.c
+        ${INCLUDES_DIR}/pet.h)
+
+target_link_libraries(tests.out ${GTEST_LIBRARIES} Threads::Threads)
+
+enable_testing()
+add_test(tests "./tests")

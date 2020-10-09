@@ -57,7 +57,7 @@ dkms.conf
 CMakeFiles/
 CMakeCache.txt
 cmake-build-debug/
-cmake_install.cmake
+*.cmake
 
 # Google test files
 googletest/

@@ -4,12 +4,9 @@
 #include "stdlib.h"
 
 int CreatePet(Pet *newPet, char *params[3]) {
-    if (!params) {
-        perror("pointer error");
-    }
 
     // reading pet's name
-    if (!(params[0])) {
+    if (!params || !newPet || !(params[0])) {
         perror("pointer error");
         return 0;
     }

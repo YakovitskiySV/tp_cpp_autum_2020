@@ -9,7 +9,7 @@ int main() {
         printf("%s", "Please enter a valid pets number\n");
     }
     Pet *pets;
-    if (!(pets = malloc(petsNumber * sizeof(Pet)))) {
+    if (!(pets = (Pet*) malloc(petsNumber * sizeof(Pet)))) {
         perror("allocation error");
         return 0;
     }

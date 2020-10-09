@@ -35,7 +35,8 @@ int CreatePet(Pet *newPet, char *params[3]) {
     if (!(params[2])) {
         perror("pointer error");
         free(newPet->name);
-        free(newPet->color);
+        free(newPet->type);
+        return 0;
     }
     bufSize = strlen(params[2]) + 1;
     if (!(newPet->color = (char*) malloc(bufSize * sizeof(char)))) {
@@ -49,9 +50,17 @@ int CreatePet(Pet *newPet, char *params[3]) {
 }
 
 int SortPets(Pet *pets, const size_t petsNumber) {
-    if (!pets) {
+    if (!pets || (int) petsNumber < 1) {
         perror("Pointer error");
         return 0;
+    }
+    for (size_t i = 0 ; i < petsNumber ; i++) {
+        if (!pets[i].name
+        || !pets[i].type
+        || !pets[i].color) {
+            perror("pointer error") ;
+            return 0;
+        }
     }
     for (size_t i = 0 ; i < petsNumber ; i++) {
         for (size_t j = 0; j < petsNumber - 1; j++) {
@@ -66,25 +75,30 @@ int SortPets(Pet *pets, const size_t petsNumber) {
 }
 
 int DeletePet(Pet *pet) {
-    free(pet->name);
-    free(pet->color);
-    free(pet->type);
+    if(pet->name) {
+        free(pet->name);
+    }
+    if (pet->color) {
+        free(pet->color);
+    }
+    if (pet->type) {
+        free(pet->type);
+    }
     return 1;
 }
 
 int PrintPet(const Pet *pet) {
-    if ((pet->name != NULL)
-       && (pet->color != NULL)
-       && (pet->type != NULL)) {
-        printf("name: %s, type: %s, color: %s\n",
-               pet->name,
-               pet->type,
-               pet->color);
-        return 1;
+    if (!pet
+    || !pet->name
+    || !pet->type
+    || !pet->color) {
+        perror("pointer error");
+        return 0;
     }
-    perror("pointer error");
-    free(pet->name);
-    free(pet->type);
-    free(pet->color);
-    return 0;
+    printf("name: %s, type: %s, color: %s\n",
+           pet->name,
+           pet->type,
+           pet->color);
+
+    return 1;
 }

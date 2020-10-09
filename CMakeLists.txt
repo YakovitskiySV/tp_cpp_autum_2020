@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(IZ-1)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_C_FLAGS "-Wall -Wextra -Werror ")
 
 find_package(GTest REQUIRED)

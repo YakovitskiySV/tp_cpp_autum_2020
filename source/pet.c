@@ -3,8 +3,8 @@
 #include "string.h"
 #include "stdlib.h"
 
-int CreatePet(Pet *newPet, char *params[3]) {
 
+int CreatePet(Pet *newPet, char *params[3]) {
     // reading pet's name
     if (!params || !newPet || !(params[0])) {
         perror("pointer error");
@@ -16,7 +16,6 @@ int CreatePet(Pet *newPet, char *params[3]) {
         return 0;
     }
     strncpy(newPet->name, params[0], bufSize);
-
     // reading pet's type
     if (!(params[1])) {
         perror("pointer error");
@@ -30,7 +29,6 @@ int CreatePet(Pet *newPet, char *params[3]) {
         return 0;
     }
     strncpy(newPet->type, params[1], bufSize);
-
     // reading pet's color
     if (!(params[2])) {
         perror("pointer error");
@@ -99,6 +97,5 @@ int PrintPet(const Pet *pet) {
            pet->name,
            pet->type,
            pet->color);
-
     return 1;
 }

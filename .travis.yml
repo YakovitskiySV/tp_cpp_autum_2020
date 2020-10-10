@@ -3,5 +3,6 @@ sudo: false
 language: cpp
 
 script:
-  - cmake .
-  - cmake --build. -- -j2
+  - cmake CMakeLists.txt
+  - make
+  - ./tests.out

@@ -1,5 +1,5 @@
 dist: trusty
-sudo: false
+sudo: required
 language: cpp
 
 addons:
@@ -13,5 +13,8 @@ addons:
       - cmake
 
 script:
-  - CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 cmake
+  - sudo ln -s usr/local/bin/gcc-6
+  - sudo ln -s usr/local/bin/g++-6
+  - cmake --version
+  - cmake CMakeLists.txt
   - cmake --build .

@@ -30,8 +30,8 @@ TEST(wrongParametrs, CreatePet_secondParam0Invalid1) {
     Pet *pets = new Pet[1];
     char **params = new char *[3];
     params[0] = NULL;
-    params[1] = "cat\0";
-    params[2] = "orange\0";
+    params[1] = "cat";
+    params[2] = "orange";
     ASSERT_EQ(0, CreatePet(pets, params));
     delete[] params;
     delete[] pets;
@@ -40,9 +40,9 @@ TEST(wrongParametrs, CreatePet_secondParam0Invalid1) {
 TEST(wrongParametrs, CreatePet_secondParam1Invalid2) {
     Pet *pets = new Pet[1];
     char **params = new char *[3];
-    params[0] = "deniska\0";
+    params[0] = "deniska";
     params[1] = NULL;
-    params[2] = "orange\0";
+    params[2] = "orange";
     ASSERT_EQ(0, CreatePet(pets, params));
     delete[] params;
     delete[] pets;
@@ -51,8 +51,8 @@ TEST(wrongParametrs, CreatePet_secondParam1Invalid2) {
 TEST(wrongParametrs, CreatePet_secondParam2Invalid) {
     Pet *pets = new Pet[1];
     char **params = new char *[3];
-    params[0] = "deniska\0";
-    params[1] = "cat\0";
+    params[0] = "deniska";
+    params[1] = "cat";
     params[2] = NULL;
     ASSERT_EQ(0, CreatePet(pets, params));
     delete[] params;
@@ -68,8 +68,8 @@ TEST(wrongParametrs, SortPets_firstParamNULL) {
 TEST(wrongParametrs, SortPets_petsNameNULL) {
     Pet *pets = new Pet[1];
     pets[0].name = NULL;
-    pets[0].type = "cat\0";
-    pets[0].color = "orange\0";
+    pets[0].type = "cat";
+    pets[0].color = "orange";
     size_t petsNumber = 1;
     ASSERT_EQ(0, SortPets(pets, petsNumber));
     delete[] pets;
@@ -77,9 +77,9 @@ TEST(wrongParametrs, SortPets_petsNameNULL) {
 
 TEST(wrongParametrs, SortPets_petsTypeNULL) {
     Pet *pets = new Pet[1];
-    pets[0].name = "deniska\0";
+    pets[0].name = "deniska";
     pets[0].type = NULL;
-    pets[0].color = "orange\0";
+    pets[0].color = "orange";
     size_t petsNumber = 1;
     ASSERT_EQ(0, SortPets(pets, petsNumber));
     delete[] pets;
@@ -87,8 +87,8 @@ TEST(wrongParametrs, SortPets_petsTypeNULL) {
 
 TEST(wrongParametrs, SortPets_petsColorNULL) {
     Pet *pets = new Pet[1];
-    pets[0].name = "deniska\0";
-    pets[0].type = "cat\0";
+    pets[0].name = "deniska";
+    pets[0].type = "cat";
     pets[0].color = NULL;
     size_t petsNumber = 1;
     ASSERT_EQ(0, SortPets(pets, petsNumber));
@@ -104,8 +104,8 @@ TEST(wrongParametrs, PrintPet_petsNULL) {
 TEST(wrongParametrs, PrintPet_petsNameNULL) {
     Pet *pets = new Pet[1];
     pets[0].name = NULL;
-    pets[0].type = "cat\0";
-    pets[0].color = "orange\0";
+    pets[0].type = "cat";
+    pets[0].color = "orange";
     size_t petsNumber = 1;
     ASSERT_EQ(0, PrintPet(pets));
     delete[] pets;
@@ -113,9 +113,9 @@ TEST(wrongParametrs, PrintPet_petsNameNULL) {
 
 TEST(wrongParametrs, PrintPet_petsTypeNULL) {
     Pet *pets = new Pet[1];
-    pets[0].name = "densiska\0";
+    pets[0].name = "densiska";
     pets[0].type = NULL;
-    pets[0].color = "orange\0";
+    pets[0].color = "orange";
     size_t petsNumber = 1;
     ASSERT_EQ(0, PrintPet(pets));
     delete[] pets;
@@ -123,8 +123,8 @@ TEST(wrongParametrs, PrintPet_petsTypeNULL) {
 
 TEST(wrongParametrs, PrintPet_petsColorNULL) {
     Pet *pets = new Pet[1];
-    pets[0].name = "deniska\0";
-    pets[0].type = "cat\0";
+    pets[0].name = "deniska";
+    pets[0].type = "cat";
     pets[0].color = NULL;
     size_t petsNumber = 1;
     ASSERT_EQ(0, PrintPet(pets));
@@ -135,9 +135,9 @@ TEST(correctParametrs, CreatePet) {
     Pet newPet;
     Pet expectedPet;
     char **params = new char*[3];
-    params[0] = "densiska\0";
-    params[1] = "cat\0";
-    params[2] = "orange\0";
+    params[0] = "densiska";
+    params[1] = "cat";
+    params[2] = "orange";
     expectedPet.name = params[0];
     expectedPet.type = params[1];
     expectedPet.color = params[2];
@@ -154,21 +154,21 @@ TEST(correctParametrs, SortPets) {
     Pet* pets = new Pet[petsNumber];
     Pet* sortedPets = new Pet[petsNumber];
     char *params[petsNumber][3];
-    params[0][0] = "densika\0";
-    params[0][1] = "cat\0";
-    params[0][2] = "orange\0";
-    params[1][0] = "andruha\0";
-    params[1][1] = "dog\0";
-    params[1][2] = "brown\0";
-    params[2][0] = "marvin\0";
-    params[2][1] = "zebruh\0";
-    params[2][2] = "black and white\0";
-    params[3][0] = "vasiok\0";
-    params[3][1] = "cat\0";
-    params[3][2] = "yellow\0";
-    params[4][0] = "bukva\0";
-    params[4][1] = "a\0";
-    params[4][2] = "pervaya\0";
+    params[0][0] = "densika";
+    params[0][1] = "cat";
+    params[0][2] = "orange";
+    params[1][0] = "andruha";
+    params[1][1] = "dog";
+    params[1][2] = "brown";
+    params[2][0] = "marvin";
+    params[2][1] = "zebruh";
+    params[2][2] = "black and white";
+    params[3][0] = "vasiok";
+    params[3][1] = "cat";
+    params[3][2] = "yellow";
+    params[4][0] = "bukva";
+    params[4][1] = "a";
+    params[4][2] = "pervaya";
     CreatePet(&sortedPets[0], params[4]);
     CreatePet(&sortedPets[1], params[0]);
     CreatePet(&sortedPets[2], params[3]);
@@ -194,9 +194,9 @@ TEST(correctParametrs, SortPets) {
 TEST(correctParametrs, PrintPet) {
     char *params[3];
     Pet *pet = new Pet[1];
-    params[0] = "deniska\0";
-    params[1] = "cat\0";
-    params[2] = "orange\0";
+    params[0] = "deniska";
+    params[1] = "cat";
+    params[2] = "orange";
     CreatePet(pet, params);
     int fd = open("PrintPetTest.txt",
                   O_CREAT

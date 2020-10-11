@@ -14,13 +14,8 @@ addons:
 
 script:
   - sudo apt-get install libgtest-dev
-  - sudo apt-get install cmake # install cmake
-  - cd /usr/src/gtest
-  - sudo cmake CMakeLists.txt
-  - sudo make
-  - sudo cp *.a /usr/lib
   - sudo ln -s usr/local/bin/gcc-6
   - sudo ln -s usr/local/bin/g++-6
   - cmake --version
-  - cmake CMakeLists.txt
-  - cmake --build .
+  - sudo cmake .
+  - sudo cmake --build .

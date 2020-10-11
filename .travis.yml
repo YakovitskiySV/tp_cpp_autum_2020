@@ -30,3 +30,4 @@ script:
   - cmake .
   - make
   - valgrind --track-origins=yes --leak-check=full ./tests.out
+  - ./linters/run.sh

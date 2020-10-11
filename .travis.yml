@@ -24,7 +24,6 @@ before_script:
   - sudo cmake .
   - sudo make
   - sudo cp *.a /usr/lib
-  - cmake --version
 
 script:
   - cd "${TRAVIS_BUILD_DIR}"

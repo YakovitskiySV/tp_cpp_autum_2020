@@ -2,10 +2,8 @@ dist: trusty
 sudo: required
 language: cpp
 
-matrix:
-  include:
-    - os: linux
-      compiler: gcc
+os: linux
+compiler: gcc
 
 addons:
   apt:
@@ -21,7 +19,7 @@ addons:
       - gcovr
 
 before_script:
-  - sudo apt-get install libgtest-dev
+  - sudo apt-get install -y libgtest-dev
   - sudo ln -s usr/local/bin/gcc-6
   - sudo ln -s usr/local/bin/g++-6
   - cd /usr/src/gtest

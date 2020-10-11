@@ -156,7 +156,10 @@ TEST(correctParametrs, CreatePet) {
     EXPECT_EQ(strcmp(newPet.name, expectedPet.name), 0);
     EXPECT_EQ(strcmp(newPet.type, expectedPet.type), 0);
     EXPECT_EQ(strcmp(newPet.color, expectedPet.color), 0);
-    DeletePet(&newPet);
+    for (size_t i = 0 ; i < 3 ; i++) {
+        delete[] params[i];
+    }
+    FreePet(&newPet);
     delete[] params;
 }
 
@@ -193,10 +196,13 @@ TEST(correctParametrs, SortPets) {
         EXPECT_EQ(strcmp(sortedPets[i].name, pets[i].name), 0);
         EXPECT_EQ(strcmp(sortedPets[i].type, pets[i].type), 0);
         EXPECT_EQ(strcmp(sortedPets[i].color, pets[i].color), 0);
+        for (size_t j = 0 ; j < 3 ; j++) {
+            delete[] params[i][j];
+        }
     }
     for (size_t i = 0 ; i < petsNumber ; i++) {
-        DeletePet(&pets[i]);
-        DeletePet(&sortedPets[i]);
+        FreePet(&pets[i]);
+        FreePet(&sortedPets[i]);
     }
     delete[] pets;
     delete[] sortedPets;
@@ -231,7 +237,11 @@ TEST(correctParametrs, PrintPet) {
     system("rm -rf PrintPetTest.txt");
     char *expectedString = AllocateString("name: deniska, type: cat, color: orange");
     EXPECT_EQ(strcmp(expectedString, fileString),0);
-    DeletePet(pet);
+    for (size_t i = 0 ; i < 3 ; i++) {
+        delete[] params[i];
+    }
+    delete[] expectedString;
+    FreePet(pet);
     delete[] pet;
 }
 

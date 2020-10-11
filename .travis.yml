@@ -16,20 +16,22 @@ addons:
       - gcc-6
       - valgrind
       - cmake
+      - cppcheck
+      - locv
+      - gcovr
 
-script:
+before_script:
   - sudo apt-get install libgtest-dev
   - sudo ln -s usr/local/bin/gcc-6
   - sudo ln -s usr/local/bin/g++-6
-  - sudo apt-get install libpthread-stubs0-dev
-  - dpkg -S /usr/lib/x86_64-linux-gnu/libpthread.a
-  - sudo apt-get install doxygen
   - cd /usr/src/gtest
   - sudo cmake .
   - sudo make
   - sudo cp *.a /usr/lib
   - cmake --version
-  - cd /home/travis/build/YakovitskiySV/tp_cpp_autum_2020/
+
+script:
+  - cd "${TRAVIS_BUILD_DIR}"
   - sudo cmake .
   - sudo make
   - ./tests.out

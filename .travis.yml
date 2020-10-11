@@ -23,5 +23,5 @@ script:
   - cmake --version
   - cd /home/travis/build/YakovitskiySV/tp_cpp_autum_2020/
   - sudo cmake .
-  - sudo cmake --build .
+  - sudo make
   - ./tests.out

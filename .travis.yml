@@ -21,6 +21,7 @@ script:
   - sudo apt-get install libgtest-dev
   - sudo ln -s usr/local/bin/gcc-6
   - sudo ln -s usr/local/bin/g++-6
+  - sudo apt-get install libpthread-stubs0-dev
   - cd /usr/src/gtest
   - sudo cmake .
   - sudo make

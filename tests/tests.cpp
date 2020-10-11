@@ -236,7 +236,7 @@ TEST(correctParametrs, PrintPet) {
     fclose(testFile);
     system("rm -rf PrintPetTest.txt");
     char *expectedString = AllocateString("name: deniska, type: cat, color: orange");
-    EXPECT_EQ(strcmp(expectedString, fileString),0);
+    EXPECT_EQ(strcmp(expectedString, fileString), 0);
     for (size_t i = 0 ; i < 3 ; i++) {
         delete[] params[i];
     }

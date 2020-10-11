@@ -56,7 +56,7 @@ int SortPets(Pet *pets, const size_t petsNumber) {
         if (!pets[i].name
         || !pets[i].type
         || !pets[i].color) {
-            perror("pointer error") ;
+            perror("pointer error");
             return 0;
         }
     }
@@ -73,7 +73,7 @@ int SortPets(Pet *pets, const size_t petsNumber) {
 }
 
 int FreePet(Pet *pet) {
-    if(pet->name) {
+    if (pet->name) {
         free(pet->name);
     }
     if (pet->color) {

@@ -1,5 +1,5 @@
-#ifndef PET_H
-#define PET_H
+#ifndef INCLUDES_PET_H_
+#define INCLUDES_PET_H_
 
 #include "stdlib.h"
 
@@ -17,4 +17,4 @@ int FreePet(Pet *pet);
 int PrintPet(const Pet *pet);
 int SortPets(Pet *pets, const size_t petsNumber);
 
-#endif  // PET_H
+#endif  // INCLUDES_PET_H_

@@ -21,7 +21,7 @@ int main() {
 
     for (size_t i = 0 ; i < petsNumber ; i++) {
         for (size_t j = 0 ; j < 3 ; j++) {
-            scanf("%s", params[j]);
+            scanf("%2s", params[j]);
         }
         if (!(CreatePet(&pets[i], params))) {
             for (size_t j = 0 ; j < i ; j++) {

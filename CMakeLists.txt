@@ -3,9 +3,10 @@ project(IZ-1 C CXX)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_C_FLAGS "-Wall -Wextra -Werror ")
-set(CMAKE_C_FLAGS "-std=gnu99 ${CMAKE_C_FLAGS}")
-set(CMAKE_THREAD_LIBS_INIT "-lpthread")
+
+set(CMAKE_C_FLAGS "-Wall -Werror -pedantic -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS "-Wall -Werror -pedantic -fprofile-arcs -ftest-coverage")
+
 
 find_package(GTest REQUIRED)
 find_package(Threads REQUIRED)
@@ -30,9 +31,12 @@ add_executable(tests.out
         ${INCLUDES_DIR}/pet.h)
 target_include_directories(tests.out PUBLIC ${INCLUDES_DIR})
 
-target_link_libraries(tests.out
+target_link_libraries(tests.out PUBLIC
         ${GTEST_LIBRARIES}
-        Threads::Threads)
+         pthread)
+
+
+
 
 enable_testing()
 add_test(tests "./tests")

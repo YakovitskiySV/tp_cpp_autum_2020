@@ -164,7 +164,7 @@ TEST(correctParametrs, SortPets) {
     size_t petsNumber = 5;
     Pet* pets = new Pet[petsNumber];
     Pet* sortedPets = new Pet[petsNumber];
-    char *params[petsNumber][3];
+    char *params[5][3];
     params[0][0] = AllocateString("deniska");
     params[0][1] = AllocateString("cat");
     params[0][2] = AllocateString("orange");

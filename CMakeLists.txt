@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 2.8.12.2)
 project(IZ-1)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_C_FLAGS "-Wall -Wextra -Werror ")
+set(CMAKE_C_FLAGS "-std=gnu99 ${CMAKE_C_FLAGS}")
 
 find_package(GTest REQUIRED)
 find_package(Threads REQUIRED)

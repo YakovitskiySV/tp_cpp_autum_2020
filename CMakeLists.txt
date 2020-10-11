@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_C_FLAGS "-Wall -Wextra -Werror ")
 set(CMAKE_C_FLAGS "-std=gnu99 ${CMAKE_C_FLAGS}")
 set(CMAKE_THREAD_LIBS_INIT "-lpthread")
+
 find_package(GTest REQUIRED)
 find_package(Threads REQUIRED)
 

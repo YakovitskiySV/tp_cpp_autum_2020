@@ -224,7 +224,6 @@ TEST(correctParametrs, PrintPet) {
     dup2(stdoutDesc, 1);
     close(stdoutDesc);
     FILE *testFile = fopen("PrintPetTest.txt", "r");
-    ASSERT_NE(testFile, NULL);
     char fileString[40];
     fgets(fileString, 40, testFile);
     fclose(testFile);

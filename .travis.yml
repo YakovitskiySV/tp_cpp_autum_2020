@@ -23,6 +23,7 @@ script:
   - sudo ln -s usr/local/bin/g++-6
   - sudo apt-get install libpthread-stubs0-dev
   - dpkg -S /usr/lib/x86_64-linux-gnu/libpthread.a
+  - sudo apt-get install doxygen
   - cd /usr/src/gtest
   - sudo cmake .
   - sudo make

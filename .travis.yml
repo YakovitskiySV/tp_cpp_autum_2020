@@ -16,6 +16,10 @@ script:
   - sudo apt-get install libgtest-dev
   - sudo ln -s usr/local/bin/gcc-6
   - sudo ln -s usr/local/bin/g++-6
+  - sudo cmake /usr/src/gtest
+  - sudo make /usr/src/gtest
+  - sudo cp *.a /usr/lib
   - cmake --version
   - sudo cmake .
   - sudo cmake --build .
+  - cd /home/travis/build/YakovitskiySV/tp_cpp_autum_2020/

@@ -28,5 +28,5 @@ before_script:
 script:
   - cd "${TRAVIS_BUILD_DIR}"
   - cmake .
-  - make -lpthread
-  - ./tests.out
+  - make
+  - valgrind --track-origins=yes --leak-check=full ./tests.out

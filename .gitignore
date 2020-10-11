@@ -59,6 +59,9 @@ CMakeCache.txt
 cmake-build-debug/
 *.cmake
 
+#Makefiles
+Makefile
+
 # Google test files
 googletest/
 

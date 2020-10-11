@@ -10,7 +10,7 @@ char *AllocateString(const char *src);
 int DeletePet(Pet *pet);
 
 TEST(wrongParametrs, CreatePet_firstParamNull) {
-    Pet *pets = nullptr;
+    Pet *pets = NULL;
     char **params = new char *[3];
     ASSERT_EQ(0, CreatePet(pets, params));
     delete[] params;
@@ -18,21 +18,21 @@ TEST(wrongParametrs, CreatePet_firstParamNull) {
 
 TEST(wrongParametrs, CreatePet_secondParamNull) {
     Pet *pets = new Pet[1];
-    char **params = nullptr;
+    char **params = NULL;
     ASSERT_EQ(0, CreatePet(pets, params));
     delete[] pets;
 }
 
 TEST(wrongParametrs, CreatePet_bothNull) {
-    Pet *pets = nullptr;
-    char **params = nullptr;
+    Pet *pets = NULL;
+    char **params = NULL;
     ASSERT_EQ(0, CreatePet(pets, params));
 }
 
 TEST(wrongParametrs, CreatePet_secondParam0Invalid1) {
     Pet *pets = new Pet[1];
     char *params[3];
-    params[0] = nullptr;
+    params[0] = NULL;
     params[1] = AllocateString("cat");
     params[2] = AllocateString("orange");
     ASSERT_EQ(0, CreatePet(pets, params));
@@ -45,7 +45,7 @@ TEST(wrongParametrs, CreatePet_secondParam1Invalid2) {
     Pet *pets = new Pet[1];
     char **params = new char *[3];
     params[0] = AllocateString("deniska");
-    params[1] = nullptr;
+    params[1] = NULL;
     params[2] = AllocateString("orange");
     ASSERT_EQ(0, CreatePet(pets, params));
     delete[] params[0];
@@ -59,7 +59,7 @@ TEST(wrongParametrs, CreatePet_secondParam2Invalid) {
     char **params = new char *[3];
     params[0] = AllocateString("deniska");
     params[1] = AllocateString("cat");
-    params[2] = nullptr;
+    params[2] = NULL;
     ASSERT_EQ(0, CreatePet(pets, params));
     delete[] params[0];
     delete[] params[1];
@@ -67,15 +67,15 @@ TEST(wrongParametrs, CreatePet_secondParam2Invalid) {
     delete[] pets;
 }
 
-TEST(wrongParametrs, SortPets_firstParamnullptr) {
-    Pet *pets = nullptr;
+TEST(wrongParametrs, SortPets_firstParamNULL) {
+    Pet *pets = NULL;
     size_t petsNumber = 1;
     ASSERT_EQ(0, SortPets(pets, petsNumber));
 }
 
-TEST(wrongParametrs, SortPets_petsNamenullptr) {
+TEST(wrongParametrs, SortPets_petsNameNULL) {
     Pet *pets = new Pet[1];
-    pets->name = nullptr;
+    pets->name = NULL;
     pets->type = AllocateString("cat");
     pets->color = AllocateString("orange");
     size_t petsNumber = 1;
@@ -84,10 +84,10 @@ TEST(wrongParametrs, SortPets_petsNamenullptr) {
     delete[] pets;
 }
 
-TEST(wrongParametrs, SortPets_petsTypenullptr) {
+TEST(wrongParametrs, SortPets_petsTypeNULL) {
     Pet *pets = new Pet[1];
     pets[0].name = AllocateString("deniska");
-    pets[0].type = nullptr;
+    pets[0].type = NULL;
     pets[0].color = AllocateString("orange");
     size_t petsNumber = 1;
     ASSERT_EQ(0, SortPets(pets, petsNumber));
@@ -95,25 +95,25 @@ TEST(wrongParametrs, SortPets_petsTypenullptr) {
     delete[] pets;
 }
 
-TEST(wrongParametrs, SortPets_petsColornullptr) {
+TEST(wrongParametrs, SortPets_petsColorNULL) {
     Pet *pets = new Pet[1];
     pets[0].name = AllocateString("deninska");
     pets[0].type = AllocateString("cat");
-    pets[0].color = nullptr;
+    pets[0].color = NULL;
     size_t petsNumber = 1;
     ASSERT_EQ(0, SortPets(pets, petsNumber));
     DeletePet(pets);
     delete[] pets;
 }
 
-TEST(wrongParametrs, PrintPet_petsnullptr) {
-    Pet *pets = nullptr;
+TEST(wrongParametrs, PrintPet_petsNULL) {
+    Pet *pets = NULL;
     ASSERT_EQ(0, PrintPet(pets));
 }
 
-TEST(wrongParametrs, PrintPet_petsNamenullptr) {
+TEST(wrongParametrs, PrintPet_petsNameNULL) {
     Pet *pets = new Pet[1];
-    pets[0].name = nullptr;
+    pets[0].name = NULL;
     pets[0].type = AllocateString("cat");
     pets[0].color = AllocateString("orange");
     ASSERT_EQ(0, PrintPet(pets));
@@ -121,21 +121,21 @@ TEST(wrongParametrs, PrintPet_petsNamenullptr) {
     delete[] pets;
 }
 
-TEST(wrongParametrs, PrintPet_petsTypenullptr) {
+TEST(wrongParametrs, PrintPet_petsTypeNULL) {
     Pet *pets = new Pet[1];
     pets[0].name = AllocateString("deniska");
-    pets[0].type = nullptr;
+    pets[0].type = NULL;
     pets[0].color = AllocateString("orange");
     ASSERT_EQ(0, PrintPet(pets));
     DeletePet(pets);
     delete[] pets;
 }
 
-TEST(wrongParametrs, PrintPet_petsColornullptr) {
+TEST(wrongParametrs, PrintPet_petsColorNULL) {
     Pet *pets = new Pet[1];
     pets[0].name = AllocateString("deniska");
     pets[0].type = AllocateString("cat");
-    pets[0].color = nullptr;
+    pets[0].color = NULL;
     ASSERT_EQ(0, PrintPet(pets));
     DeletePet(pets);
     delete[] pets;
@@ -224,7 +224,7 @@ TEST(correctParametrs, PrintPet) {
     dup2(stdoutDesc, 1);
     close(stdoutDesc);
     FILE *testFile = fopen("PrintPetTest.txt", "r");
-    ASSERT_NE(testFile, nullptr);
+    ASSERT_NE(testFile, NULL);
     char fileString[40];
     fgets(fileString, 40, testFile);
     fclose(testFile);

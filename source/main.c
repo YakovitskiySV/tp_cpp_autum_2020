@@ -25,7 +25,7 @@ int main() {
         }
         if (!(CreatePet(&pets[i], params))) {
             for (size_t j = 0 ; j < i ; j++) {
-                DeletePet(&pets[j]);
+                FreePet(&pets[j]);
                 free(params[j]);
             }
             free(pets);
@@ -37,7 +37,7 @@ int main() {
     }
     if (!(SortPets(pets, petsNumber))) {
         for (size_t i = 0 ; i < petsNumber ; i++) {
-            DeletePet(&pets[i]);
+            FreePet(&pets[i]);
         }
         free(pets);
         return 0;
@@ -45,12 +45,12 @@ int main() {
     for (size_t i = 0 ; i < petsNumber ; i++) {
         if (!(PrintPet(&pets[i]))) {
             for (size_t j = 0 ; j < i ; j++) {
-                DeletePet(&pets[j]);
+                FreePet(&pets[j]);
             }
             free(pets);
             return 0;
         }
-        DeletePet(&pets[i]);
+        FreePet(&pets[i]);
     }
     free(pets);
     return 1;

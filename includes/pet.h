@@ -11,7 +11,7 @@ typedef struct Pet {
 
 // Init/release operations
 int CreatePet(Pet *newPet, char *params[3]);
-int DeletePet(Pet *pet);
+int FreePet(Pet *pet);
 
 // Extra operations
 int PrintPet(const Pet *pet);

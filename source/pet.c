@@ -72,7 +72,7 @@ int SortPets(Pet *pets, const size_t petsNumber) {
     return 1;
 }
 
-int DeletePet(Pet *pet) {
+int FreePet(Pet *pet) {
     if(pet->name) {
         free(pet->name);
     }

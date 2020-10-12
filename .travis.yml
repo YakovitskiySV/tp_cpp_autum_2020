@@ -28,7 +28,7 @@ before_script:
 script:
   - cd "${TRAVIS_BUILD_DIR}"
   - ./linters/run.sh
-  - CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6
+  - CXX=/usr/bin/g++-9 CC=/usr/bin/gcc-9
   - cmake .
   - make
   - valgrind -v --show-leak-kinds=all --track-origins=yes --leak-check=full ./tests.out

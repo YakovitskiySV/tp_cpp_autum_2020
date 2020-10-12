@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 14)
 
 if (CMAKE_COMPILER_IS_GNUCC)
-    option(ENABLE_COVERAGE "Enable coverage for gcc/clang" FALSE)
+    option(ENABLE_COVERAGE "Enable coverage for gcc/clang" TRUE)
 
     if(ENABLE_COVERAGE)
         add_compile_options(--coverage -O0)

@@ -29,7 +29,7 @@ script:
   - cd "${TRAVIS_BUILD_DIR}"
   - ./linters/run.sh
   - CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6
-  - cmake . -D ENABLE_COVERAGE=TRUE
+  - cmake .
   - make
   - valgrind --track-origins=yes --leak-check=full ./tests.out
   - bash <(curl -s https://codecov.io/bash)

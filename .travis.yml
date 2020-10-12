@@ -1,6 +1,6 @@
 dist: trusty
 sudo: required
-language: cpp
+language: c
 
 os: linux
 compiler: gcc
@@ -10,8 +10,8 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - g++-6
-      - gcc-6
+      - g++-9
+      - gcc-9
       - valgrind
       - cmake
       - cppcheck

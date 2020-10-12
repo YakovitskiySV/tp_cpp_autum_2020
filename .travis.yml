@@ -3,7 +3,7 @@ sudo: required
 language: c
 
 arch:
-  - arm64
+  - ppc64le
 
 os: linux
 compiler: gcc

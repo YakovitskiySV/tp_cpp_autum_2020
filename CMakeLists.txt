@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.12.2)
+cmake_minimum_required(VERSION 3.9)
 project(IZ-1 C CXX)
 
 set(CMAKE_C_STANDARD 99)

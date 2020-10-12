@@ -1,9 +1,4 @@
 # tp_cpp_autum_2020
-IZ-1
-[![codecov](https://codecov.io/gh/YakovitskiySV/tp_cpp_autum_2020/branch/developing-iz-1/graph/badge.svg)](https://codecov.io/gh/YakovitskiySV/tp_cpp_autum_2020)
-[![Build Status](https://travis-ci.org/YakovitskiySV/tp_cpp_autum_2020.svg?branch=developing-iz-1)](https://travis-ci.org/YakovitskiySV/tp_cpp_autum_2020)
-
-=======
 
 Вариант #24
 Создать структуру для хранения информации о домашнем питомце: его виде, окрасе, кличке. Составить с ее использованием программу вывода информации обо всех питомцах с группировкой по видам (кошки, собаки, прочие).
@@ -17,4 +12,6 @@ IZ-1
 – развернуть CI, в рамках которого автоматизировать сборку проекта, прохождение юнит-тестов под valgrind, генерацию отчёта о покрытии кода тестами, линтера и статического анализатора исходного кода;
 – после прохождения всех проверок необходимо отправить код на ревью своему преподавателю;
 – ревью - процесс итерационный. До наступления дедлайна можно проходить несколько итераций, улучшая свою оценку. Решения после дедлайна не принимаются;
+[![codecov](https://codecov.io/gh/YakovitskiySV/tp_cpp_autum_2020/branch/developing-iz-1/graph/badge.svg)](https://codecov.io/gh/YakovitskiySV/tp_cpp_autum_2020)
+[![Build Status](https://travis-ci.org/YakovitskiySV/tp_cpp_autum_2020.svg?branch=developing-iz-1)](https://travis-ci.org/YakovitskiySV/tp_cpp_autum_2020)
 

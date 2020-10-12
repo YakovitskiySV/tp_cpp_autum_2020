@@ -3,7 +3,7 @@ sudo: required
 language: c
 
 arch:
-  - ppc64le
+  - s390x
 
 os: linux
 compiler: gcc

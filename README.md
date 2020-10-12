@@ -2,7 +2,9 @@
 IZ-1
 [![codecov](https://codecov.io/gh/YakovitskiySV/tp_cpp_autum_2020/branch/developing-iz-1/graph/badge.svg)](https://codecov.io/gh/YakovitskiySV/tp_cpp_autum_2020)
 [![Build Status](https://travis-ci.org/YakovitskiySV/tp_cpp_autum_2020.svg?branch=developing-iz-1)](https://travis-ci.org/YakovitskiySV/tp_cpp_autum_2020)
+
 =======
+
 Вариант #24
 Создать структуру для хранения информации о домашнем питомце: его виде, окрасе, кличке. Составить с ее использованием программу вывода информации обо всех питомцах с группировкой по видам (кошки, собаки, прочие).
 

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.12.2)
 project(IZ-1 C CXX)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 if (CMAKE_COMPILER_IS_GNUCC)
     option(ENABLE_COVERAGE "Enable coverage for gcc/clang" TRUE)

@@ -3,7 +3,7 @@ project(IZ-1 C CXX)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_C_COMPILER "/usr/bin/gcc-9")
+set(CMAKE_C_COMPILER "gcc")
 
 if (CMAKE_COMPILER_IS_GNUCC)
     option(ENABLE_COVERAGE "Enable coverage for gcc/clang" TRUE)
@@ -47,7 +47,7 @@ target_include_directories(tests.out PUBLIC
 target_link_libraries(tests.out PUBLIC
         ${GTEST_LIBRARIES}
         Threads::Threads
-        --coverage)
+        -O0 --coverage)
 
 enable_testing()
 add_test(tests "./tests")

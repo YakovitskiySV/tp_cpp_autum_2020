@@ -33,5 +33,5 @@ script:
   - make
   - valgrind --version
   - valgrind -v -d --show-leak-kinds=all --track-origins=yes --leak-check=full ./tests.out
-  - valgrind -v -d --show-leak-kinds=all --track-origins=yes --leak-check=full ./tests.out
+  - valgrind -v -d --show-leak-kinds=all --track-origins=yes --leak-check=full ls
   - bash <(curl -s https://codecov.io/bash)

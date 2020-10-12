@@ -32,5 +32,5 @@ script:
   - cmake .
   - make
   - valgrind --version
-  - valgrind -v --show-leak-kinds=all --track-origins=yes --leak-check=full ./tests.out
+  - valgrind -v --track-origins=yes --leak-check=full ./tests.out
   - bash <(curl -s https://codecov.io/bash)

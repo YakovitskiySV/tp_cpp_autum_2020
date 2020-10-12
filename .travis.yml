@@ -17,7 +17,6 @@ addons:
       - cppcheck
       - lcov
       - gcovr
-      - clang-format
 
 before_script:
   - sudo apt-get install -y libgtest-dev

@@ -45,7 +45,7 @@ target_include_directories(tests.out PUBLIC
 
 target_link_libraries(tests.out PUBLIC
         ${GTEST_LIBRARIES}
-         pthread
+        Threads::Threads
         --coverage)
 
 enable_testing()

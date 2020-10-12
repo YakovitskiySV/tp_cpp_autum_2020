@@ -3,7 +3,7 @@ sudo: required
 language: c
 
 os: linux
-compiler: gcc
+compiler: clang
 
 addons:
   apt:
@@ -17,10 +17,10 @@ addons:
       - cppcheck
       - lcov
       - gcovr
+      - clang
 
 before_script:
   - sudo apt-get install -y libgtest-dev
-  - sudo apt-get upgrade --allow-unauthenticated -y
   - cd /usr/src/gtest
   - sudo cmake .
   - sudo make

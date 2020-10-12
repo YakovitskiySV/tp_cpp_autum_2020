@@ -17,6 +17,7 @@ addons:
       - cppcheck
       - lcov
       - gcovr
+      - clang-format/tidy
 
 before_script:
   - sudo apt-get install -y libgtest-dev
@@ -31,5 +32,5 @@ script:
   - CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6
   - cmake .
   - make
-  - valgrind --track-origins=yes --leak-check=full ./tests.out
+  - valgrind -v --show-leak-kinds=all --track-origins=yes --leak-check=full ./tests.out
   - bash <(curl -s https://codecov.io/bash)

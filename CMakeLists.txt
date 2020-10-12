@@ -3,7 +3,7 @@ project(IZ-1 C CXX)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_C_COMPILER "gcc")
+set(CMAKE_C_COMPILER "/usr/bin/gcc-9")
 
 if (CMAKE_COMPILER_IS_GNUCC)
     option(ENABLE_COVERAGE "Enable coverage for gcc/clang" TRUE)

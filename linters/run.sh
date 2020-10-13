@@ -7,7 +7,7 @@ function print_header() {
 }
 
 cflags="--suppressions-list=.suppressions-list.txt --std=c99 --enable=all -inconclusive"
-cppflags="--suppressions-list=.suppressions-list.txt --std=c++17 --enable=all -inconclusive"
+cppflags="--suppressions-list=.suppressions-list.txt --std=c++20 --enable=all -inconclusive"
 
 print_header "RUN CPP CHECK"
 
@@ -17,9 +17,9 @@ cppcheck $cppflags tests/*.cpp
 
 
 print_header "RUN cpplint.py"
-python2.7 ./linters/cpplint/cpplint.py --extensions=c source/*
-python2.7 ./linters/cpplint/cpplint.py --extensions=cpp tests/*
-python2.7 ./linters/cpplint/cpplint.py --extensions=h includes/*
+python3 ./linters/cpplint/cpplint.py --extensions=c source/*
+python3 ./linters/cpplint/cpplint.py --extensions=cpp tests/*
+python3 ./linters/cpplint/cpplint.py --extensions=h includes/*
 
 
 

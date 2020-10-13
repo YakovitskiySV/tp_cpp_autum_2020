@@ -18,12 +18,9 @@ addons:
       - valgrind
       - cmake
       - cppcheck
-      - lcov
-      - gcovr
       - clang
 
 before_script:
-  - lsb_release -a
   - sudo apt-get install -y libgtest-dev
   - cd /usr/src/gtest
   - sudo cmake .
@@ -35,7 +32,5 @@ script:
   - ./linters/run.sh
   - cmake .
   - make
-  - valgrind --version
-  - valgrind -v -d --show-leak-kinds=all --track-origins=yes --leak-check=full ./tests.out
-  - valgrind --show-leak-kinds=all --track-origins=yes --leak-check=full ls
+  - valgrind --show-leak-kinds=all --track-origins=yes --leak-check=full ./tests.out
   - bash <(curl -s https://codecov.io/bash)

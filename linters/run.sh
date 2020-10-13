@@ -7,7 +7,7 @@ function print_header() {
 }
 
 cflags="--suppressions-list=.suppressions-list.txt --std=c99 --enable=all -inconclusive"
-cppflags="--suppressions-list=.suppressions-list.txt --std=c++20 --enable=all -inconclusive"
+cppflags="--suppressions-list=.suppressions-list.txt --std=c++11 --enable=all -inconclusive"
 
 print_header "RUN CPP CHECK"
 

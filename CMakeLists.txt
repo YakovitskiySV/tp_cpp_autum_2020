@@ -5,14 +5,6 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_COMPILER "gcc")
 
-if (CMAKE_COMPILER_IS_GNUCC)
-    option(ENABLE_COVERAGE "Enable coverage for gcc/clang" TRUE)
-
-    if(ENABLE_COVERAGE)
-        add_compile_options(--coverage -O0)
-    endif()
-endif()
-
 set(CMAKE_C_FLAGS "-Wall -Werror -pedantic -fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_FLAGS "-Wall -Werror -pedantic -fprofile-arcs -ftest-coverage")
 

@@ -1,20 +1,32 @@
 #ifndef INCLUDES_PET_H_
 #define INCLUDES_PET_H_
 
-#include "stdlib.h"
+#include <stdlib.h>
 
-typedef struct Pet {
+typedef struct pet {
     char *name;
     char *type;
     char *color;
-} Pet;
+} pet;
 
-// Init/release operations
-int CreatePet(Pet *newPet, char *params[3]);
-int FreePet(Pet *pet);
+ //  Init/release operations
+pet *allocate_pets(size_t *pets_number);
+int create_pet(pet *new_pet,
+                char *expected_name,
+                char *expected_type,
+                char *expected_color);
+int free_pet(pet *single_pet);
+int free_pets(pet *pets, size_t *pets_number);
 
-// Extra operations
-int PrintPet(const Pet *pet);
-int SortPets(Pet *pets, const size_t petsNumber);
+ // set operations
+int set_pets_name(pet *single_pet, char *name);
+int set_pets_type(pet *single_pet, char *type);
+int set_pets_color(pet *single_pet, char *color);
+
+
+ //  Extra operations
+int print_pet(pet *single_pet);
+int print_pets_by_type(pet *pets, size_t *pets_number, char *requested_pets_type);
+int sort_pets(pet *pets, const size_t *petsNumber);
 
 #endif  // INCLUDES_PET_H_

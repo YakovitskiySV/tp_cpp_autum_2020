@@ -5,8 +5,8 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_C_COMPILER "gcc")
 
-set(CMAKE_C_FLAGS "-Wall -Werror -pedantic -fprofile-arcs -ftest-coverage")
-set(CMAKE_CXX_FLAGS "-Wall -Werror -pedantic -fprofile-arcs -ftest-coverage")
+set(CMAKE_C_FLAGS "-Wall -Werror -pedantic -ftest-coverage")
+set(CMAKE_CXX_FLAGS "-Wall -Werror -pedantic -ftest-coverage")
 
 find_package(GTest REQUIRED)
 find_package(Threads REQUIRED)

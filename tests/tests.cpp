@@ -151,6 +151,7 @@ TEST(correctParametrs, print_pet) {
     putchar('\n');
     print_pet(&single_pet);
     setbuf(stdout, NULL);
+    putchar('\n');
     file_string[expected_string.length()] = '\0';
     EXPECT_EQ(strcmp((char *)expected_string.c_str(), file_string), 0);
     free_pet(&single_pet);

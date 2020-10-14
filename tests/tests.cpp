@@ -192,6 +192,7 @@ TEST(correctParams, print_pets_by_type) {
     print_pets_by_type(pets, &pets_number, (char*) requested_pet_type.c_str());
     setbuf(stdout, NULL);
     std::string expected_string = "name: cats_name, type: dog, color: cats_color";  // NOLINT
+    file_string[expected_string.length()] = '\0';
     EXPECT_EQ(expected_string, file_string);
     for (size_t i = 0 ; i < pets_number ; ++i) {
         free(pets[i].name);

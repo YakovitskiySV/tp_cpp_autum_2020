@@ -191,7 +191,7 @@ TEST(correctParams, print_pets_by_type) {
     putchar('\n');
     print_pets_by_type(pets, &pets_number, (char*) requested_pet_type.c_str());
     setbuf(stdout, NULL);
-    std::string expected_string = "name: cats_name, type: dog, color: cats_color\n";  // NOLINT
+    std::string expected_string = "name: cats_name, type: dog, color: cats_color";  // NOLINT
     EXPECT_EQ(expected_string, file_string);
     for (size_t i = 0 ; i < pets_number ; ++i) {
         free(pets[i].name);

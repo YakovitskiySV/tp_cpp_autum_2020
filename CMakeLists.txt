@@ -1,14 +1,13 @@
-cmake_minimum_required(VERSION 3.9)
+
+cmake_minimum_required(VERSION 2.8.12.2)
 project(IZ-1 C CXX)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_C_COMPILER "gcc")
+set(CMAKE_CXX_STANDARD 14)
 
-add_compile_options(--coverage -O0)
+set(CMAKE_C_FLAGS "-Wall -Werror -pedantic -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS "-Wall -Werror -pedantic -fprofile-arcs -ftest-coverage")
 
-set(CMAKE_C_FLAGS "-Wall -Werror -pedantic -lcov -fprofile-arcs -ftest-coverage")
-set(CMAKE_CXX_FLAGS "-Wall -Werror -pedantic -lcov -fprofile-arcs -ftest-coverage")
 
 find_package(GTest REQUIRED)
 find_package(Threads REQUIRED)
@@ -20,28 +19,22 @@ set(TESTS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 include_directories("${GTEST_INCLUDE_DIRS}")
 include_directories(${SOURCES_DIR})
 
-# Создание iz1.out (самой программы из условия ИЗ-1)
+
 add_executable(iz1.out
         ${SOURCES_DIR}/main.c
         ${SOURCES_DIR}/pet.c
         ${INCLUDES_DIR}/pet.h)
+target_include_directories(iz1.out PUBLIC ${INCLUDES_DIR})
 
-target_include_directories(iz1.out PUBLIC
-        ${INCLUDES_DIR})
-
-# Создание tests.out (тесты написанные при помощи gtest)
 add_executable(tests.out
         ${TESTS_DIR}/tests.cpp
         ${SOURCES_DIR}/pet.c
         ${INCLUDES_DIR}/pet.h)
-
-target_include_directories(tests.out PUBLIC
-        ${INCLUDES_DIR})
+target_include_directories(tests.out PUBLIC ${INCLUDES_DIR})
 
 target_link_libraries(tests.out PUBLIC
         ${GTEST_LIBRARIES}
-        Threads::Threads
-        --coverage)
+        pthread)
 
 enable_testing()
-add_test(tests tests.out)
+add_test(tests "./tests")

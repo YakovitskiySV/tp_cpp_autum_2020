@@ -39,6 +39,7 @@ script:
   - make
 
 after_success:
-
   - valgrind --show-leak-kinds=all --track-origins=yes --leak-check=full ./tests.out
+  - valgrind --show-leak-kinds=all --track-origins=yes --leak-check=full ./iz1.out
+  - 3 den cat orange dron cat yellow and green dog cat
   - bash <(curl -s https://codecov.io/bash)

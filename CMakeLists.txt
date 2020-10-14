@@ -5,6 +5,8 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_C_COMPILER "gcc")
 
+add_compile_options(--coverage -O0)
+
 set(CMAKE_C_FLAGS "-Wall -Werror -pedantic -lcov -fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_FLAGS "-Wall -Werror -pedantic -lcov -fprofile-arcs -ftest-coverage")
 
@@ -39,7 +41,7 @@ target_include_directories(tests.out PUBLIC
 target_link_libraries(tests.out PUBLIC
         ${GTEST_LIBRARIES}
         Threads::Threads
-        -O0 --coverage)
+        --coverage)
 
 enable_testing()
-add_test(tests "./tests")
+add_test(tests tests.out)

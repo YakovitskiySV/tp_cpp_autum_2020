@@ -170,7 +170,7 @@ TEST(correctParametrs, print_pet) {
     free_pet(&single_pet);
 }
 
-TEST(correctParams, print_pets_by_type) {
+TEST(DISABLED_correctParams, print_pets_by_type) {
     size_t pets_number = 3;
     pet pets[3];
     std::string cats_name = "cats_name";

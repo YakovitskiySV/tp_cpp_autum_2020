@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "pet.h"  // NOLINT
+#include "pet.h" // NOLINT
 
 #define STD_BUF_STRING_SIZE 64
 
@@ -16,21 +16,18 @@ int main() {
         perror("allocation error");
         return 1;
     }
-    for (size_t i = 0 ; i < pets_number ; ++i) {
+    for (size_t i = 0; i < pets_number; ++i) {
         char expected_name[STD_BUF_STRING_SIZE] = "";
         char expected_type[STD_BUF_STRING_SIZE] = "";
         char expected_color[STD_BUF_STRING_SIZE] = "";
-        if (!scanf("%s %s %s",
-                   expected_name,
-                   expected_type,
-                   expected_color)) {
+        if (!scanf("%s %s %s", expected_name, expected_type, expected_color)) {
             perror("scanf() error");
             return 1;
         }
         if (create_pet(&pets[i],
-                   expected_name,
-                   expected_type,
-                   expected_color) != 0) {
+                       expected_name,
+                       expected_type,
+                       expected_color) != 0) {
             if (free_pets(pets, &pets_number)) {
                 perror("pointer error");
                 return 1;

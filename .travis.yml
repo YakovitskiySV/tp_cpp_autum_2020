@@ -1,0 +1,43 @@
+dist: trusty
+sudo: required
+language: c
+
+arch:
+  - s390x
+
+os: linux
+compiler: gcc
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-9
+      - gcc-9
+      - valgrind
+      - cmake
+      - cppcheck
+      - clang
+
+before_script:
+  - sudo apt-get install -y libgtest-dev
+  - sudo pip install cpplint
+  - cd /usr/src/gtest
+  - sudo cmake .
+  - sudo make
+  - sudo cp *.a /usr/lib
+
+script:
+  - cd "${TRAVIS_BUILD_DIR}"
+  - cppcheck --std=c99 --enable=all -inconclusive source
+  - cppcheck --std=c++11 --enable=all -inconclusive tests
+  - cpplint --filter=-legal/copyright,-readability/casting source/*.c
+  - cpplint --filter=-legal/copyright,-readability/casting tests/*.cpp
+  - cpplint --filter=-legal/copyright,-readability/casting includes/*.h
+  - cmake .
+  - make
+
+after_success:
+  - valgrind --show-leak-kinds=all --track-origins=yes --leak-check=full ./tests.out
+  - bash <(curl -s https://codecov.io/bash)

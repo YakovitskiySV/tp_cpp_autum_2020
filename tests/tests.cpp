@@ -63,7 +63,7 @@ TEST(wrongParametrs, create_pet_nameNull) {
     char *expected_name = nullptr;
     std::string expected_type = "type";
     std::string expected_color = "color";
-    ASSERT_EQ(1, create_pet(&single_pet, expected_name,
+    EXPECT_EQ(1, create_pet(&single_pet, expected_name,
                             (char *)expected_type.c_str(),
                             (char *)expected_color.c_str()));
 }
@@ -73,7 +73,7 @@ TEST(wrongParametrs, create_pet_typeNull) {
     char *expected_type = nullptr;
     std::string expected_name = "name";
     std::string expected_color = "color";
-    ASSERT_EQ(1, create_pet(&single_pet, (char *)expected_name.c_str(),
+    EXPECT_EQ(1, create_pet(&single_pet, (char *)expected_name.c_str(),
                             expected_type, (char *)expected_color.c_str()));
 }
 
@@ -82,13 +82,13 @@ TEST(wrongParametrs, create_pet_colorNull) {
     char *expected_color = nullptr;
     std::string expected_name = "name";
     std::string expected_type = "type";
-    ASSERT_EQ(1, create_pet(&single_pet, (char *)expected_name.c_str(),
+    EXPECT_EQ(1, create_pet(&single_pet, (char *)expected_name.c_str(),
                             (char *)expected_type.c_str(), expected_color));
 }
 
 TEST(wrongParametrs, print_pet_petsNULL) {
     pet *pets = nullptr;
-    ASSERT_EQ(0, print_pet(pets));
+    EXPECT_EQ(0, print_pet(pets));
 }
 
 TEST(wrongParametrs, print_pet_petsNameNULL) {
@@ -96,7 +96,7 @@ TEST(wrongParametrs, print_pet_petsNameNULL) {
     single_pet.name = nullptr;
     single_pet.type = new char[STD_STRING_SIZE];
     single_pet.color = new char[STD_STRING_SIZE];
-    ASSERT_EQ(0, print_pet(&single_pet));
+    EXPECT_EQ(0, print_pet(&single_pet));
     delete[] single_pet.type;
     delete[] single_pet.color;
 }
@@ -106,7 +106,7 @@ TEST(wrongParametrs, print_pet_petsTypeNULL) {
     single_pet.name = new char[STD_STRING_SIZE];
     single_pet.type = nullptr;
     single_pet.color = new char[STD_STRING_SIZE];
-    ASSERT_EQ(0, print_pet(&single_pet));
+    EXPECT_EQ(0, print_pet(&single_pet));
     delete[] single_pet.name;
     delete[] single_pet.color;
 }
@@ -116,9 +116,21 @@ TEST(wrongParametrs, print_pet_petsColorNULL) {
     single_pet.name = new char[STD_STRING_SIZE];
     single_pet.type = new char[STD_STRING_SIZE];
     single_pet.color = nullptr;
-    ASSERT_EQ(0, print_pet(&single_pet));
+    EXPECT_EQ(0, print_pet(&single_pet));
     delete[] single_pet.name;
     delete[] single_pet.type;
+}
+
+TEST(wrongParametrs, free_petsPetsNull) {
+    pet* pets = nullptr;
+    size_t pets_number = 2;
+    EXPECT_EQ(1, free_pets(pets, &pets_number));
+}
+
+TEST(wrongParametrs, free_petsPetsNumberIsZero) {
+    pet pets[2];
+    size_t pets_number = 0;
+    EXPECT_EQ(1, free_pets(pets, &pets_number));
 }
 
 TEST(correctParametrs, create_pet) {
@@ -138,6 +150,7 @@ TEST(correctParametrs, create_pet) {
     free_pet(&newPet);
 }
 
+
 TEST(correctParametrs, print_pet) {
     pet single_pet;
     std::string expected_name = "deniska";
@@ -153,8 +166,33 @@ TEST(correctParametrs, print_pet) {
     setbuf(stdout, NULL);
     putchar('\n');
     file_string[expected_string.length()] = '\0';
-    EXPECT_EQ(strcmp((char *)expected_string.c_str(), file_string), 0);
+    EXPECT_EQ(expected_string, file_string);
     free_pet(&single_pet);
+}
+
+TEST(correctParams, print_pets_by_type) {
+    size_t pets_number = 3;
+    pet pets[3];
+    std::string cats_name = "cats_name";
+    std::string type = "cat";
+    std::string cats_color = "cats_color";
+    for (size_t i = 0 ; i < 2 ; ++i) {
+        create_pet(&pets[i], (char*)cats_name.c_str(),
+                   (char*) type.c_str(),
+                   (char*) cats_color.c_str());
+    }
+    type = "dog";
+    create_pet(&pets[2], (char*)cats_name.c_str(),
+              (char*) type.c_str(),
+              (char*) cats_color.c_str());
+    char file_string[STD_STRING_SIZE];
+    std::string requested_pet_type = "dog";
+    setbuf(stdout, file_string);
+    putchar('\n');
+    print_pets_by_type(pets, &pets_number, (char*) requested_pet_type.c_str());
+    setbuf(stdout, NULL);
+    std::string expected_string = "name: cats_name, type: dog, color: cats_color\n";
+    EXPECT_EQ(expected_string, file_string);
 }
 
 int main(int argc, char **argv) {

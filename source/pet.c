@@ -90,7 +90,7 @@ int free_pet(pet *single_pet) {
 }
 
 int free_pets(pet *pets, size_t *pets_number) {
-    if (!pets || !pets_number) {
+    if (!pets || *pets_number == 0) {
         return 1;
     }
     for (size_t i = 0; i < *pets_number; ++i) {
@@ -104,7 +104,7 @@ int print_pet(pet *pet) {
     if (!pet || !pet->name || !pet->type || !pet->color) {
         return 0;
     }
-    printf("name: %s, type: %s, color: %s", pet->name, pet->type, pet->color);
+    printf("name: %s, type: %s, color: %s\n", pet->name, pet->type, pet->color);
     return 1;
 }
 

@@ -170,19 +170,19 @@ TEST(correctParametrs, print_pet) {
     free_pet(&single_pet);
 }
 
-TEST(DISABLED_correctParams, print_pets_by_type) {
+TEST(correctParams, print_pets_by_type) {
     size_t pets_number = 3;
     pet pets[3];
     std::string cats_name = "cats_name";
     std::string type = "cat";
     std::string cats_color = "cats_color";
-    for (size_t i = 0 ; i < 2 ; ++i) {
+    for (size_t i = 0 ; i < pets_number - 1 ; ++i) {
         create_pet(&pets[i], (char*)cats_name.c_str(),
                    (char*) type.c_str(),
                    (char*) cats_color.c_str());
     }
     type = "dog";
-    create_pet(&pets[2], (char*)cats_name.c_str(),
+    create_pet(&pets[pets_number - 1], (char*)cats_name.c_str(),
               (char*) type.c_str(),
               (char*) cats_color.c_str());
     char file_string[STD_STRING_SIZE];
@@ -193,6 +193,11 @@ TEST(DISABLED_correctParams, print_pets_by_type) {
     setbuf(stdout, NULL);
     std::string expected_string = "name: cats_name, type: dog, color: cats_color\n";  // NOLINT
     EXPECT_EQ(expected_string, file_string);
+    for (size_t i = 0 ; i < pets_number ; ++i) {
+        free(pets[i].name);
+        free(pets[i].type);
+        free(pets[i].color);
+    }
 }
 
 int main(int argc, char **argv) {

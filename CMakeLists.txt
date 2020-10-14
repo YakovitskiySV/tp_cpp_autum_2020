@@ -40,7 +40,7 @@ target_include_directories(tests.out PUBLIC
 
 target_link_libraries(tests.out PUBLIC
         ${GTEST_LIBRARIES}
-        Threads::Threads
+        pthread
         --coverage)
 
 enable_testing()

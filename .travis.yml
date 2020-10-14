@@ -32,9 +32,9 @@ script:
   - cpplint --filter=-legal/copyright,-readability/casting source/*.c
   - cpplint  --filter=-legal/copyright,-readability/casting tests/*.cpp
   - cpplint  --filter=-legal/copyright,-readability/casting includes/*.h
-
-after_success:
   - cmake .
   - make
+
+after_success:
   - valgrind --show-leak-kinds=all --track-origins=yes --leak-check=full ./tests.out
   - bash <(curl -s https://codecov.io/bash)

@@ -27,4 +27,4 @@ int print_pets_by_type(pet *pets, size_t *pets_number,
                        char *requested_pets_type);
 int sort_pets(pet *pets, const size_t *petsNumber);
 
-#endif // INCLUDES_PET_H_
+#endif  // INCLUDES_PET_H_

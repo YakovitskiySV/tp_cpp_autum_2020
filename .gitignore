@@ -66,3 +66,6 @@ googletest/
 
 # Other files
 .idea/
+
+#test-files
+*.test

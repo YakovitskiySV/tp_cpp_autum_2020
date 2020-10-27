@@ -17,7 +17,8 @@ typedef struct {
 
 tuple make_tuple(int32_t *source);
 tuple *make_tuples_from_file(char* file_name);
+
 double calculate_edge(tuple *single_tuple);
-double calculate_root_len(tuple *tuples, size_t tuples_number);
+
 
 #endif //HW_2_TUPLE_H

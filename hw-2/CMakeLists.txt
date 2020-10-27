@@ -12,5 +12,22 @@ include_directories("${GTEST_INCLUDE_DIRS}")
 include_directories(source)
 include_directories(includes)
 
-add_executable(hw_2.out source/main.c includes/tuple.h source/tuple.c)
-target_link_libraries(hw_2.out PRIVATE m)
+add_library(single_proc STATIC
+        includes/tuple.h
+        source/tuple.c
+        includes/single-process.h
+        source/single-process.c)
+
+add_library(multi_proc SHARED
+        includes/tuple.h
+        source/tuple.c
+        includes/multi-process.h
+        source/multi-process.c)
+
+add_executable(hw_2.out source/main.c)
+
+target_link_libraries(hw_2.out
+        single_proc
+        multi_proc
+        m)  # m для math.h
+

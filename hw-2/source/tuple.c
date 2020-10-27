@@ -14,10 +14,10 @@ tuple make_tuple(int32_t *source) {
     if (!memcpy(buffer, source, sizeof(*source))) {
         return result;
     }
-    result.x1 = buffer[3];
-    result.y1 = buffer[2];
-    result.x2 = buffer[1];
-    result.y2 = buffer[0];
+    result.x1 = buffer[0];
+    result.y1 = buffer[1];
+    result.x2 = buffer[2];
+    result.y2 = buffer[3];
     return result;
 }
 
@@ -48,19 +48,5 @@ double calculate_edge(tuple *single_tuple) {
     double result = 0;
     result = sqrt(pow((single_tuple->x2 -single_tuple->x1), 2)
                   + pow((single_tuple->y2 - single_tuple->y1), 2));
-    return result;
-}
-
-double calculate_root_len(tuple *tuples, size_t tuples_number) {
-    double result = 0;
-    result += calculate_edge(&tuples[0]);
-    for (size_t i = 1 ; i < tuples_number ; ++i) {
-        tuple buf = {tuples[i - 1].x2,  // Чтобы не пропустить ребро
-                     tuples[i - 1].y2,  // между двумя кортежами
-                     tuples[i].x1,
-                     tuples[i].y1};
-        result += calculate_edge(&buf);
-        result += calculate_edge(&tuples[i]);
-    }
     return result;
 }

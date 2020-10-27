@@ -1,9 +1,10 @@
-#include "tuple.h"
 #include <string.h>
-#include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
-#include "math.h"
+#include <sys/mman.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include "single-process.h"
+#include "multi-process.h"
 
 int main(int argc, char **argv) {
     char file_name[64] = {};
@@ -16,23 +17,24 @@ int main(int argc, char **argv) {
             return 1;
         }
     }
-    FILE* file = fopen(file_name, "r");
-    if (!file) {
-        return NULL;
+    multi_result *single_proc_res = calc_result_single_proc(file_name);
+    if (!single_proc_res) {
+        perror("single-process error");
+        return 1;
     }
-    size_t tuples_number = 0;
-    fscanf(file,"%zu", &tuples_number);
-    clock_t begin_time = clock();
-    tuple* tuples = make_tuples_from_file(file_name);
-    if (!tuples) {
+    if (print_result_single_proc(single_proc_res) != 0) {
         perror("pointer error");
         return 1;
     }
-    fclose(file);
-    double single_proc_res = calculate_root_len(tuples, tuples_number);
-    printf("%lf", single_proc_res);
-    clock_t end_time = clock();
-    double time_spent = (double) (end_time - begin_time) / CLOCKS_PER_SEC;
-    free(tuples);
+    printf("%c", '\n');
+    free(single_proc_res);
+    multi_result *multi_proc_results = calc_result_multi_proc(file_name);
+    if (!multi_proc_results) {
+        perror("multi-process error");
+    }
+    if (print_results_multi_proc(multi_proc_results) != 0) {
+        perror("pointer error");
+    }
+    munmap(multi_proc_results, getpagesize());
     return 0;
 }

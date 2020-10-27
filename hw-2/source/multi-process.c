@@ -14,26 +14,40 @@ double calculate_root_len_multi(tuple *tuples,
                                 size_t tuples_number,
                                 int beg_pos,
                                 int end_pos) {
-    if (!tuples) {
+    if (!tuples
+    || (beg_pos >= end_pos)
+    || (beg_pos < 0)
+    || (end_pos < 0)
+    || (end_pos > (int)tuples_number)) {
         return -1;
     }
     double result = 0;
+    double buf_res = 0;
     if (beg_pos == 0) {
-        result += calculate_edge(&tuples[beg_pos]);
+        buf_res = calculate_edge(&tuples[beg_pos]);
+        if (buf_res != -1) {
+            result += buf_res;
+        }
     }
     if (tuples_number == 1) {
         return result;
     }
-    if (end_pos == tuples_number) {
+    if (end_pos == (int)tuples_number) {
         end_pos--;
     }
-    for (size_t i = beg_pos + 1 ; i <= end_pos ; ++i) {
+    for (size_t i = beg_pos + 1 ; i <= (size_t)end_pos ; ++i) {
         tuple buf = {tuples[i - 1].x2,  // Чтобы не пропустить ребро
                      tuples[i - 1].y2,  // между двумя кортежами
                      tuples[i].x1,
                      tuples[i].y1};
-        result += calculate_edge(&buf);
-        result += calculate_edge(&tuples[i]);
+        buf_res = calculate_edge(&buf);
+        if (buf_res != -1)
+            result +=buf_res;
+        else return -1;
+        buf_res = calculate_edge(&tuples[i]);
+        if (buf_res != -1)
+            result += buf_res;
+        else return -1;
     }
     return result;
 }
@@ -46,7 +60,7 @@ multi_result *create_shared_multi_result() {
                         MAP_SHARED | MAP_ANONYMOUS,
                         -1,
                         0);
-    if (!res) {
+    if (res == MAP_FAILED) {
         return NULL;
     }
     res->time_spent = 0;
@@ -55,6 +69,9 @@ multi_result *create_shared_multi_result() {
 }
 
 int create_procs(size_t procs_number, int* pids) {
+    if (!pids || procs_number == 0) {
+        return -1;
+    }
     int pid = 1;
     for (size_t i = 0 ; i < procs_number ; ++i) {
         pid = fork();
@@ -69,13 +86,18 @@ int create_procs(size_t procs_number, int* pids) {
 }
 
 multi_result *calc_result_multi_proc(char * file_name) {
-    multi_result* res = NULL;
+    if (file_name == NULL) {
+        return NULL;
+    }
     FILE* file = fopen(file_name, "r");
     if (!file) {
         return NULL;
     }
     size_t tuples_number = 0;
-    fscanf(file,"%zu", &tuples_number);
+    if (!fscanf(file,"%zu", &tuples_number)) {
+        fclose(file);
+        return NULL;
+    }
     clock_t begin_time = clock();
     tuple* tuples = make_tuples_from_file(file_name);
     if (!tuples) {
@@ -86,7 +108,7 @@ multi_result *calc_result_multi_proc(char * file_name) {
         free(tuples);
         return NULL;
     }
-    res = create_shared_multi_result();
+    multi_result* res = create_shared_multi_result();
     if (res == NULL) {
         free(tuples);
         return NULL;
@@ -103,8 +125,8 @@ multi_result *calc_result_multi_proc(char * file_name) {
     }
     if (proc_number > MASTER_PROC_NUMBER) {
        size_t chunk_size = tuples_number / procs_number;
-       int beg_pos = proc_number * chunk_size;
-       int end_pos = beg_pos + chunk_size;
+       int beg_pos = proc_number * (int)chunk_size;
+       int end_pos = beg_pos + (int)chunk_size;
        double buf = calculate_root_len_multi(tuples, tuples_number, beg_pos, end_pos);
        res->root_len += buf;
        exit(0);

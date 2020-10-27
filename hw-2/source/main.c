@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
             return 1;
         }
     }
-    multi_result *single_proc_res = calc_result_single_proc(file_name);
+    single_result *single_proc_res = calc_result_single_proc(file_name);
     if (!single_proc_res) {
         perror("single-process error");
         return 1;

@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "tuple.h"
 
-typedef struct {
+typedef struct multi_result {
     double root_len;
     double time_spent;
     int procs_amount;

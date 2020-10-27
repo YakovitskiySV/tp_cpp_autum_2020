@@ -20,5 +20,6 @@ tuple *make_tuples_from_file(char* file_name);
 
 double calculate_edge(tuple *single_tuple);
 
+int tuple_is_wrong(tuple *source);
 
 #endif //HW_2_TUPLE_H

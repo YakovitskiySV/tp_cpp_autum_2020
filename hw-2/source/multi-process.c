@@ -134,7 +134,6 @@ multi_result *calc_result_multi_proc(char *file_name) {
                                              tuples_number,
                                              beg_pos,
                                              end_pos);
-       free(tuples);
        res->root_len += buf;
        exit(0);
     }

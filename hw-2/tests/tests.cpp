@@ -231,12 +231,6 @@ TEST(correct_params, create_procs) {  // NOLINT
     EXPECT_EQ(MASTER_PROC_NUMBER, process_number);
 }
 
-//TEST(correct_params, create_shared_multi_result) {  // NOLINT
-//    multi_result* res = create_shared_multi_result();
-//    EXPECT_NE(res, MAP_FAILED);
-//    munmap(res, getpagesize());
-//}
-
 TEST(correct_params, calculate_root_len_multi) {  // NOLINT
     std::string buf = STD_TEST_FILE;
     char *file_name = (char*) buf.c_str();
@@ -275,17 +269,17 @@ TEST(correct_params, multi_and_single_compare) {  // NOLINT
     free(single_res);
 }
 
-//TEST(correct_params, multi_and_single_compare_del_grande) {  // NOLINT
-//    std::string buf = BIG_FILE;
-//    char *file_name = (char*) buf.c_str();
-//    multi_result *multi_res = calc_result_multi_proc(file_name);
-//    single_result *single_res = calc_result_single_proc(file_name);
-//    EXPECT_LT(abs(multi_res->root_len - single_res->root_len), 1);
-//    // отсекли дробные чатсти
-//    // тк они не будут совпадать тк чисел слишком много
-//    munmap(multi_res, getpagesize());
-//    free(single_res);
-//}
+TEST(correct_params, multi_and_single_compare_del_grande) {  // NOLINT
+    std::string buf = BIG_FILE;
+    char *file_name = (char*) buf.c_str();
+    multi_result *multi_res = calc_result_multi_proc(file_name);
+    single_result *single_res = calc_result_single_proc(file_name);
+    EXPECT_LT(abs(multi_res->root_len - single_res->root_len), 1);
+    // отсекли дробные чатсти
+    // тк они не будут совпадать тк чисел слишком много
+    munmap(multi_res, getpagesize());
+    free(single_res);
+}
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);

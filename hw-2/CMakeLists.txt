@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.9.2)
 project(hw_2)
 
 set(CMAKE_C_STANDARD 11)

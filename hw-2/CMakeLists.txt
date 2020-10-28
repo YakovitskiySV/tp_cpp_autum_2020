@@ -4,8 +4,8 @@ project(hw_2)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_C_FLAGS "-g -Wall -Werror -Wextra -O3 -ftest-coverage")
-set(CMAKE_CXX_FLAGS "-g -Wall -Werror -O3 -ftest-coverage")
+set(CMAKE_C_FLAGS "-g -Wall -Werror -Wextra -O3 -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS "-g -Wall -Werror -O3 -fprofile-arcs -ftest-coverage")
 
 find_package(GTest REQUIRED)
 find_package(Threads REQUIRED)

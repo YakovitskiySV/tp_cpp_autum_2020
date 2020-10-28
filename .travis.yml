@@ -1,0 +1,45 @@
+dist: bionic
+sudo: required
+language: c
+
+os: linux
+compiler: gcc
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-9
+      - gcc-9
+      - valgrind
+      - cmake
+      - cppcheck
+      - clang
+
+before_script:
+  - sudo apt-get install -y libgtest-dev
+  - sudo pip install cpplint
+  - cd /usr/src/gtest
+  - sudo cmake .
+  - sudo make
+  - sudo cp *.a /usr/lib
+
+script:
+  - cd "${TRAVIS_BUILD_DIR}"
+  - cd hw-2
+  - cd tests
+  - bash generate_tests.sh
+  - cd .. 
+  - cppcheck --std=c99 --enable=all -inconclusive source
+  - cppcheck --std=c++11 --enable=all -inconclusive tests
+  - cpplint --filter=-legal/copyright,-readability/casting,-build/include_order --recursive */*.c
+  - cpplint --filter=-legal/copyright,-readability/casting,-build/include_order --recursive tests/tests.cpp
+  - cpplint --filter=-legal/copyright,-readability/casting includes/*.h
+  - cmake .
+  - make
+
+after_success:
+  - valgrind --track-origins=yes --leak-check=full --child-silent-after-fork=yes ./hw_2.out tests/size_100mb_1.test
+  - valgrind --track-origins=yes --child-silent-after-fork=yes --leak-check=full ./tests.out
+  - bash <(curl -s https://codecov.io/bash)

@@ -1,5 +1,5 @@
-#include "multi-process.h"
-#include "tuple.h"
+#include "multi-process.h"  // NOLINT
+#include "tuple.h"  // NOLINT
 #include <string.h>
 #include <stdio.h>
 #include <time.h>
@@ -22,9 +22,8 @@ double calculate_root_len_multi(tuple *tuples,
         return -1;
     }
     double result = 0;
-    double buf_res = 0;
     if (beg_pos == 0) {
-        buf_res = calculate_edge(&tuples[beg_pos]);
+        double buf_res = calculate_edge(&tuples[beg_pos]);
         if (buf_res != -1) {
             result += buf_res;
         }
@@ -40,14 +39,18 @@ double calculate_root_len_multi(tuple *tuples,
                      tuples[i - 1].y2,  // между двумя кортежами
                      tuples[i].x1,
                      tuples[i].y1};
-        buf_res = calculate_edge(&buf);
-        if (buf_res != -1)
-            result +=buf_res;
-        else return -1;
-        buf_res = calculate_edge(&tuples[i]);
-        if (buf_res != -1)
+        double buf_res = calculate_edge(&buf);
+        if (buf_res != -1) {
             result += buf_res;
-        else return -1;
+        } else {
+            return -1;
+        }
+        buf_res = calculate_edge(&tuples[i]);
+        if (buf_res != -1) {
+            result += buf_res;
+        } else {
+            return -1;
+        }
     }
     return result;
 }
@@ -72,9 +75,8 @@ int create_procs(size_t procs_number, int* pids) {
     if (!pids || procs_number == 0) {
         return -1;
     }
-    int pid = 1;
     for (size_t i = 0 ; i < procs_number ; ++i) {
-        pid = fork();
+        int pid = fork();
         if (pid == -1) {
             return -1;
         } else if (pid == 0) {
@@ -94,7 +96,7 @@ multi_result *calc_result_multi_proc(char * file_name) {
         return NULL;
     }
     size_t tuples_number = 0;
-    if (!fscanf(file,"%zu", &tuples_number)) {
+    if (!fscanf(file, "%zu", &tuples_number)) {
         fclose(file);
         return NULL;
     }
@@ -114,7 +116,7 @@ multi_result *calc_result_multi_proc(char * file_name) {
         return NULL;
     }
     size_t procs_number = STD_PROC_NUM;
-    int pids[procs_number];
+    int pids[STD_PROC_NUM];
     for (size_t i = 0 ; i < procs_number ; ++i) {
         pids[i] = 0;
     }
@@ -127,7 +129,10 @@ multi_result *calc_result_multi_proc(char * file_name) {
        size_t chunk_size = tuples_number / procs_number;
        int beg_pos = proc_number * (int)chunk_size;
        int end_pos = beg_pos + (int)chunk_size;
-       double buf = calculate_root_len_multi(tuples, tuples_number, beg_pos, end_pos);
+       double buf = calculate_root_len_multi(tuples,
+                                             tuples_number,
+                                             beg_pos,
+                                             end_pos);
        res->root_len += buf;
        exit(0);
     }

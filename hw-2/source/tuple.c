@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <inttypes.h>
 #include <math.h>
-#include "tuple.h"
+#include "tuple.h"  // NOLINT
 
 #define STD_BUF_TUPLE_SIZE 4
 
@@ -32,16 +32,18 @@ tuple *make_tuples_from_file(char* file_name) {
         return NULL;
     }
     size_t tuples_number = 0;
-    if (!fscanf(file,"%zu", &tuples_number)) {
+    if (!fscanf(file, "%zu", &tuples_number)) {
+        fclose(file);
         return NULL;
     }
     tuple *tuples = NULL;
     if (!(tuples = (tuple*) malloc(sizeof(tuple) * tuples_number))) {
+        fclose(file);
         return NULL;
     }
     for (size_t i = 0 ; i < tuples_number ; ++i) {
         int32_t source = 0;
-        if (!fscanf(file,"%"PRId32, &source)) {
+        if (!fscanf(file, "%"PRId32, &source)) {
             free(tuples);
             return NULL;
         }
@@ -69,7 +71,7 @@ int tuple_is_wrong(tuple *source) {
     if (!source) {
         return 1;
     }
-    if((source->x1 == 0)
+    if ((source->x1 == 0)
     && (source->y1 == 0)
     && (source->x2 == 0)
     && (source->y2 == 0)) {

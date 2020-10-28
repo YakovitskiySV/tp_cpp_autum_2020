@@ -1,9 +1,9 @@
-#include "single-process.h"
-#include "tuple.h"
+#include "single-process.h"  // NOLINT
+#include "tuple.h"  // NOLINT
 #include <string.h>
 #include <stdio.h>
 #include <time.h>
-#include "math.h"
+#include "math.h"  // NOLINT
 
 single_result *calc_result_single_proc(char *file_name) {
     if (file_name == NULL) {
@@ -14,7 +14,8 @@ single_result *calc_result_single_proc(char *file_name) {
         return NULL;
     }
     size_t tuples_number = 0;
-    if (!fscanf(file,"%zu", &tuples_number)) {
+    if (!fscanf(file, "%zu", &tuples_number)) {
+        fclose(file);
         return NULL;
     }
     clock_t begin_time = clock();
@@ -32,6 +33,7 @@ single_result *calc_result_single_proc(char *file_name) {
     if (res->root_len == -1) {
         fclose(file);
         free(tuples);
+        free(res);
         return NULL;
     }
     clock_t end_time = clock();
@@ -58,12 +60,16 @@ double calculate_root_len_single(tuple *tuples, size_t tuples_number) {
                      tuples[i - 1].y2,  // между двумя кортежами
                      tuples[i].x1,
                      tuples[i].y1};
-        if ((buf_res = calculate_edge(&buf_tuple)) != -1)
+        if ((buf_res = calculate_edge(&buf_tuple)) != -1) {
             result += buf_res;
-        else return -1;
-        if ((buf_res = calculate_edge(&tuples[i])) != -1)
+        } else {
+            return -1;
+        }
+        if ((buf_res = calculate_edge(&tuples[i])) != -1) {
             result += buf_res;
-        else return -1;
+        } else {
+            return -1;
+        }
     }
     return result;
 }

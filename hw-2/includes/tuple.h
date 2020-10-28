@@ -2,8 +2,8 @@
 // Created by yakovitskiy on 25.10.2020.
 //
 
-#ifndef HW_2_TUPLE_H
-#define HW_2_TUPLE_H
+#ifndef HW_2_INCLUDES_TUPLE_H_
+#define HW_2_INCLUDES_TUPLE_H_
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -22,4 +22,4 @@ double calculate_edge(tuple *single_tuple);
 
 int tuple_is_wrong(tuple *source);
 
-#endif //HW_2_TUPLE_H
+#endif  // HW_2_INCLUDES_TUPLE_H_

@@ -1,18 +1,19 @@
-#include <string.h>
+#include "multi-process.h"  // NOLINT
+#include "single-process.h"  // NOLINT
 #include <stdio.h>
-#include <sys/mman.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/mman.h>
 #include <unistd.h>
-#include "single-process.h"
-#include "multi-process.h"
+
+#define STD_STRING_SIZE 64
 
 int main(int argc, char **argv) {
-    char file_name[64] = {};
+    char file_name[STD_STRING_SIZE] = {};
     if (argc > 1) {
-        strcpy(file_name, argv[1]);
-    }
-    else {
-        if (!scanf("%s", file_name)) {
+        snprintf(file_name, STD_STRING_SIZE - 1, "%s", argv[1]);
+    } else {
+        if (!scanf("%1s", file_name)) {
             perror("wrong file name");
             return 1;
         }

@@ -11,19 +11,20 @@
 {(5 5) (6 6)}
 {(7 7) (8 8)}
 */
-#define BIG_FILE "tests/size_100mb_1.test"  // Файл с числами для массива на 100МБ
+#define BIG_FILE "tests/size_100mb_1.test"
+// Файл с числами для массива на 100МБ
 #define STD_PROCS_NUMBER 2
 #define STD_TEST_ANSWER 9.8994949366116671  // Ответ из файла STD_TEST_FILE
 #define STD_TEST_TUPLES_NUMBER 4
 #define MASTER_PROC_NUMBER -10
 
 extern "C" {
-#include "tuple.h"
-#include "single-process.h"
-#include "multi-process.h"
+#include "tuple.h"  // NOLINT
+#include "single-process.h"  // NOLINT
+#include "multi-process.h"  // NOLINT
 }
 
-int compare_tuples(tuple &lhs, tuple &rhs) {
+int compare_tuples(tuple const &lhs, tuple const &rhs) {
     if ((lhs.x1 == rhs.x1)
     && (lhs.y1 == rhs.y1)
     && (lhs.x2 == rhs.x2)
@@ -223,7 +224,7 @@ TEST(correct_params, calc_result_single_proc) {  // NOLINT
 
 TEST(correct_params, print_result_single_proc) {  // NOLINT
     single_result res = {0, 0};
-    EXPECT_EQ(0 ,print_result_single_proc(&res));
+    EXPECT_EQ(0 , print_result_single_proc(&res));
 }
 
 TEST(correct_params, create_procs) {  // NOLINT

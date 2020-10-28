@@ -2,9 +2,6 @@ dist: trusty
 sudo: required
 language: c
 
-arch:
-  - s390x
-
 os: linux
 compiler: gcc
 
@@ -33,12 +30,13 @@ script:
   - cd hw-2 
   - cppcheck --std=c99 --enable=all -inconclusive source
   - cppcheck --std=c++11 --enable=all -inconclusive tests
-  - cpplint --filter=-legal/copyright,-readability/casting source/*.c
-  - cpplint --filter=-legal/copyright,-readability/casting tests/*.cpp
+  - cpplint --filter=-legal/copyright,-readability/casting,-build/include_order --recursive */*.c
+  - cpplint --filter=-legal/copyright,-readability/casting,-build/include_order --recursive tests/*.cpp
   - cpplint --filter=-legal/copyright,-readability/casting includes/*.h
   - cmake .
   - make
 
 after_success:
-  - valgrind --show-leak-kinds=all --track-origins=yes --leak-check=full ./tests.out
+  - valgrind --track-origins=yes --leak-check=full ./hw_2.out tests/size_100mb_1.test
+  - valgrind --track-origins=yes --leak-check=full ./tests.out
   - bash <(curl -s https://codecov.io/bash)

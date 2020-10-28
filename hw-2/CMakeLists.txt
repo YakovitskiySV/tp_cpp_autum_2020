@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_C_FLAGS "-g -Wall -Werror -Wextra -O3 -fprofile-arcs -ftest-coverage")
-set(CMAKE_CXX_FLAGS "-g -Wall -O3 -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS "-g -Wall -Werror -O3 -fprofile-arcs -ftest-coverage")
 
 find_package(GTest REQUIRED)
 find_package(Threads REQUIRED)

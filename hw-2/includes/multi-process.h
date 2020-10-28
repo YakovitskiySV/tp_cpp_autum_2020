@@ -2,11 +2,11 @@
 // Created by yakovitskiy on 27.10.2020.
 //
 
-#ifndef HW_2_MULTI_PROCESS_H
-#define HW_2_MULTI_PROCESS_H
+#ifndef HW_2_INCLUDES_MULTI_PROCESS_H_
+#define HW_2_INCLUDES_MULTI_PROCESS_H_
 
 #include <stdio.h>
-#include "tuple.h"
+#include "tuple.h"  // NOLINT
 
 typedef struct multi_result {
     double root_len;
@@ -24,4 +24,4 @@ multi_result *create_shared_multi_result();
 int print_results_multi_proc(multi_result *res);
 int create_procs(size_t procs_number, int *pids);
 
-#endif //HW_2_MULTI_PROCESS_H
+#endif  // HW_2_INCLUDES_MULTI_PROCESS_H_

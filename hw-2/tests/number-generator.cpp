@@ -8,9 +8,10 @@ void generate_file(std::ostream& file, int size) {
     file << size << std::endl;
     int64_t min_number = -2147483648;
     int64_t max_number = 2147483647;
-    srand(static_cast<unsigned int>(time(nullptr)));
     for (size_t i = 0; i < size; ++i) {
-            file <<  rand_r() % max_number + min_number << ' ';
+            file <<
+            rand()
+            % max_number + min_number << ' ';
     }
 }
 

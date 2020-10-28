@@ -269,7 +269,6 @@ TEST(correct_params, multi_and_single_compare) {  // NOLINT
     free(single_res);
 }
 
-
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

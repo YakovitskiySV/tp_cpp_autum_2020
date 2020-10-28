@@ -27,11 +27,14 @@ before_script:
 
 script:
   - cd "${TRAVIS_BUILD_DIR}"
-  - cd hw-2 
+  - cd hw-2
+  - cd tests
+  - bash generate_tests.sh
+  - cd .. 
   - cppcheck --std=c99 --enable=all -inconclusive source
   - cppcheck --std=c++11 --enable=all -inconclusive tests
   - cpplint --filter=-legal/copyright,-readability/casting,-build/include_order --recursive */*.c
-  - cpplint --filter=-legal/copyright,-readability/casting,-build/include_order --recursive tests/*.cpp
+  - cpplint --filter=-legal/copyright,-readability/casting,-build/include_order --recursive tests/tests.cpp
   - cpplint --filter=-legal/copyright,-readability/casting includes/*.h
   - cmake .
   - make

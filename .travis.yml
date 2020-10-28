@@ -40,6 +40,6 @@ script:
   - make
 
 after_success:
-  - valgrind --track-origins=yes --leak-check=full ./hw_2.out tests/size_100mb_1.test
-  - valgrind --track-origins=yes --leak-check=full ./tests.out
+  - valgrind --track-origins=yes --leak-check=full --child-silent-after-fork=yes ./hw_2.out tests/size_100mb_1.test
+  - valgrind --track-origins=yes --child-silent-after-fork=yes --leak-check=full ./tests.out
   - bash <(curl -s https://codecov.io/bash)

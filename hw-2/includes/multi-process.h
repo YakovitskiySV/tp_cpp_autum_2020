@@ -19,7 +19,6 @@ double calculate_root_len_multi(tuple *tuples,
                                 int beg_pos,
                                 int end_pos);
 multi_result *calc_result_multi_proc(char * file_name);
-multi_result *create_shared_multi_result();
 
 int print_results_multi_proc(multi_result *res);
 int create_procs(size_t procs_number, int *pids);

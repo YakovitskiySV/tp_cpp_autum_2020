@@ -1,6 +1,9 @@
-dist: trusty
+dist: bionic
 sudo: required
 language: c
+
+arch:
+  - ppc64le
 
 os: linux
 compiler: gcc

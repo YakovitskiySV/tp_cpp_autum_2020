@@ -68,6 +68,7 @@ multi_result *create_shared_multi_result() {
     }
     res->time_spent = 0;
     res->root_len = 0;
+    res->procs_amount = STD_PROC_NUM;
     return res;
 }
 
@@ -87,7 +88,7 @@ int create_procs(size_t procs_number, int* pids) {
     return MASTER_PROC_NUMBER;
 }
 
-multi_result *calc_result_multi_proc(char * file_name) {
+multi_result *calc_result_multi_proc(char *file_name) {
     if (file_name == NULL) {
         return NULL;
     }
@@ -101,7 +102,7 @@ multi_result *calc_result_multi_proc(char * file_name) {
         return NULL;
     }
     clock_t begin_time = clock();
-    tuple* tuples = make_tuples_from_file(file_name);
+    tuple *tuples = make_tuples_from_file(file_name);
     if (!tuples) {
         fclose(file);
         return NULL;
@@ -133,16 +134,17 @@ multi_result *calc_result_multi_proc(char * file_name) {
                                              tuples_number,
                                              beg_pos,
                                              end_pos);
+       free(tuples);
        res->root_len += buf;
        exit(0);
     }
+    free(tuples);
     for (size_t i = 0 ; i < procs_number ; ++i) {
         while (waitpid(pids[i], NULL, 0) > 0) {}
     }
     clock_t end_time = clock();
     res->time_spent = (double) (end_time - begin_time) / CLOCKS_PER_SEC;
     res->procs_amount = procs_number;
-    free(tuples);
     return res;
 }
 
